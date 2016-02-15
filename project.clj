@@ -10,9 +10,14 @@
 
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/clojurescript "0.0-3058" :scope "provided"]
+                 ;;JSON encoding
+                 [cheshire "5.5.0"]
+                 ;;validation for cljs and clj
+                 [bouncer "1.0.0"]
+                 ;;routing 
+                 [ring/ring-mock "0.3.0"]
                  [ring "1.4.0"]
                  [ring/ring-defaults "0.1.4"]
-                 ;;routing 
                  [compojure "1.3.2"]
                  ;;HTML templating 
                  [enlive "1.1.6"]
@@ -25,11 +30,11 @@
                  ;;database
                  [org.postgresql/postgresql "9.4-1206-jdbc4"]
                  ;;security
-                 [buddy "0.9.0"]
+                 [buddy "0.10.0"]
                  ;;database connection management
                  [conman "0.2.9"]
                  ;;database migrations
-                 [migratus "0.7.0"]
+                 [migratus "0.8.9"]
                  ;;dependencies 
                  [org.slf4j/slf4j-log4j12 "1.7.9"]
                  ;;library for generating SQL functions
@@ -38,13 +43,17 @@
                  [clj-http "2.0.1"]
                  ;;classpath (add new libs in REPL)
                  [com.cemerick/pomegranate "0.3.0"]
+                 ;;amazon aws
+                 [amazonica "0.3.49"]
+                 [clj-aws-s3 "0.3.10" :exclusions [joda-time]]
+                 ;;UUID generation
+                 [danlentz/clj-uuid "0.1.6"]
                  ] 
                 
   :plugins [[lein-cljsbuild "1.0.5"]
             [lein-environ "1.0.0"]
             [lein-ancient "0.6.8"]
-            [migratus-lein "0.1.0"]]
-
+            [migratus-lein "0.2.1"]]
 
   :migratus {:store         :database
              :migration-dir "migrations"

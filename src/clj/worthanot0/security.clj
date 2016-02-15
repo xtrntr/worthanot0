@@ -10,10 +10,9 @@
             [buddy.hashers :as hash]))
 
 ;; db -> db-spec
-
 (defn encrypt-password
   [password]
-  (hash/encrypt password))
+  (hash/encrypt password {:alg :pbkdf2+sha256}))
 
 (defn check-password
   [encrypted unencrypted]

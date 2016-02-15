@@ -8,14 +8,62 @@ VALUES (:username, :email, :password)
 -- update an existing user record
 UPDATE users
 SET username = :username, password = :password, date_created = :date_created, last_login = :last_login
-WHERE id = :id
+WHERE username = :username
 
 -- name: get-user
 -- retrieve a user given the id.
-SELECT * FROM users
-WHERE id = :id
+SELECT * 
+FROM users
+WHERE username = :username
+
+-- name: get-email
+-- retrieve a email given the id.
+SELECT email 
+FROM users
+WHERE email = :email
 
 -- name: delete-user!
 -- delete a user given the id
 DELETE FROM users
-WHERE id = :id
+WHERE username = :username
+
+
+
+-- name: create-image!
+-- creates a new image record
+INSERT INTO images
+(listing_id, image_amazon_key)
+VALUES (:listing_id, :image_amazon_key)
+
+-- name: get-listing-images
+-- retrieve images given the listing id.
+-- multiple images can belong to the same listing_id
+SELECT listing_id 
+FROM images
+WHERE listing_id = :listing_id
+
+-- name: delete-images!
+-- delete image given the listing_id
+-- multiple images can belong to the same listing_id
+DELETE FROM images
+WHERE listing_id = :listing_id
+
+
+
+
+-- name: create-listing!
+-- creates a new listing record
+INSERT INTO listings
+(listing_id, user_id)
+VALUES (:listing_id, :user_id)
+
+-- name: get-all-listings-of-user
+-- retrieve all listing ids given the user id
+SELECT *
+FROM listings
+WHERE user_id = :user_id
+
+-- name: delete-listing!
+-- delete a listing
+DELETE FROM listings
+WHERE listing_id = :listing_id
