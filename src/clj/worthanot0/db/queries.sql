@@ -32,13 +32,13 @@ WHERE username = :username
 -- name: create-image!
 -- creates a new image record
 INSERT INTO images
-(listing_id, image_amazon_key)
-VALUES (:listing_id, :image_amazon_key)
+(listing_id, image_id)
+VALUES (:listing_id, :image_id)
 
 -- name: get-listing-images
 -- retrieve images given the listing id.
 -- multiple images can belong to the same listing_id
-SELECT listing_id 
+SELECT image_id 
 FROM images
 WHERE listing_id = :listing_id
 
@@ -50,20 +50,20 @@ WHERE listing_id = :listing_id
 
 
 
-
 -- name: create-listing!
 -- creates a new listing record
 INSERT INTO listings
 (listing_id, user_id)
 VALUES (:listing_id, :user_id)
 
--- name: get-all-listings-of-user
+-- name: get-user-listings
 -- retrieve all listing ids given the user id
-SELECT *
+SELECT listing_id
 FROM listings
 WHERE user_id = :user_id
 
 -- name: delete-listing!
 -- delete a listing
+-- in select * from listings where user_id = 'db85ff95-a202-47d5-afb7-e790274c46a7';
 DELETE FROM listings
 WHERE listing_id = :listing_id

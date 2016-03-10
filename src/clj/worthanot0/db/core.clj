@@ -9,3 +9,5 @@
 
 (defqueries "worthanot0/db/queries.sql"
   {:connection db-spec})   
+ 
+ 
