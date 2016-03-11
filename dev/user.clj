@@ -15,33 +15,13 @@
 
 
 (def http-handler
-  (wrap-reload #'server/http-handler))
+  (wrap-reload #'server/http-handler)) 
 
 (def browser-repl figwheel/cljs-repl)
 
 (def port (or port (env :port) 10555))
 
-(defrecord Figwheel []
-  component/Lifecycle
-  (start [_]
-    (figwheel/start-figwheel!)
-    (server/event-loop))
-  (stop [_]
-    ;; you may want to restart other components but not Figwheel
-    ;; consider commenting out this next line if that is the case
-    (figwheel/stop-figwheel!)))
-
-(def system
-  (atom
-   (component/system-map
-    :app-server (run-server http-handler port))))
-
 (defn start []
-  (swap! system component/start))
-
-(defn stop []
-  (swap! system component/stop))
-
-(defn reload []
-  (stop)
-  (start))
+  (println port)
+  (run-server http-handler port)
+  (server/event-loop))

@@ -76,22 +76,22 @@
       {:username "" :password ""})
     om/IRenderState
     (render-state [_ state]
-      (when-let [error (:notify/error app)]
-        (dom/div {:style #js {:color "red"}} error))
-      (dom/form #js {:id "axd" :onSubmit #(attempt-login % app owner)}
-                (dom/div nil "user") 
-                (dom/input #js {:ref "username" 
-                                :type "text" 
-                                        ;:value (:username state)
-                                        ;:on-change #(field-change % owner :username)
-                                })
-                (dom/div nil "password") 
-                (dom/input #js {:ref "password" 
-                                :type "password" 
-                                :value (:password state)
-                                :on-change #(field-change % owner :password)})
-                (dom/div nil "")
-                (dom/input #js {:type "submit" :value "login"})))))
+      (html [:div {:style {:margin "auto" :width "175"
+                           :border "solid blue 1px" :padding 20}}
+             (when-let [error (:notify/error app)]
+               [:div {:style #js {:color "red"}} error])
+             [:h1 "Login"]
+             [:form {:on-submit #(attempt-login % app owner)}
+              [:div
+               [:p "Username"]
+               [:input {:ref "username" :type "text" :value (:username state)
+                        :on-change #(field-change % owner :username)}]]
+              [:div
+               [:p "Password"]
+               [:input {:ref "password" :type "password" :value (:password state)
+                        :on-change #(field-change % owner :password)}]]
+              [:div
+               [:input {:type "submit" :value "Login"}]]]]))))
 
 (defn event-loop
   [app owner]
@@ -116,7 +116,9 @@
     (render-state [this state]
       (case (:session/state state)
         :open
-        (om/build login-form app {})
+        (html [:div {:style {:margin "auto"
+                             :border "solid red 1px" :padding 20}}
+               (om/build login-form app {})])
         :secure
         (dom/div nil "logged in")
         :unknown
@@ -124,5 +126,5 @@
 
 (om/root application
          app-state
-         {:target (. js/document (getElementById "app"))})
+         {:target (. js/document (getElementById "login"))})
 

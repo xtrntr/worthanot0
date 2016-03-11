@@ -80,6 +80,10 @@
 
   :uberjar-name "worthanot0.jar"
 
+  ;;lein ring server
+  :ring {:handler worthanot0.server/http-handler}
+
+  ;;lein run
   :main worthanot0.server
 
   ;; nREPL by default starts in the :main namespace, we want to start in `user`
@@ -106,17 +110,19 @@
   ;; merging. So don't put a :figwheel section under the :dev profile, it will
   ;; not be picked up, instead configure figwheel here on the top level.
   
-  :figwheel {;; :http-server-root "public"       ;; serve static assets from resources/public/
-             ;; :server-port 3449                ;; default
+  :figwheel {:http-server-root "public"          ;; serve static assets from resources/public/
+             :port 3449 
              ;; :server-ip "127.0.0.1"           ;; default
              :css-dirs ["resources/public/css"]  ;; watch and update CSS
+             :reload-clj-files true
+
 
              ;; Instead of booting a separate server on its own port, we embed
              ;; the server ring handler inside figwheel's http-kit server, so
              ;; assets and API endpoints can all be accessed on the same host
              ;; and port. If you prefer a separate server process then take this
              ;; out and start the server with `lein run`.
-             :ring-handler user/http-handler
+             ;; :ring-handler user/http-handler
 
              ;; Start an nREPL server into the running figwheel process. We
              ;; don't do this, instead we do the opposite, running figwheel from
@@ -144,7 +150,9 @@
                              [org.clojure/tools.nrepl "0.2.12"]]
 
               :plugins [[lein-figwheel "0.5.0-6"]
-                        [lein-doo "0.1.6"]]
+                        [lein-doo "0.1.6"]
+                        [lein-pdo "0.1.1"]
+                        [lein-ring "0.9.7"]]
 
               :cljsbuild {:builds
                           {:test

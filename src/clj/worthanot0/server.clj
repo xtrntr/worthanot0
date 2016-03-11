@@ -28,7 +28,6 @@
             [ring.util.response :refer [resource-response file-response redirect response content-type]]
 
             [net.cgrand.enlive-html :as html :refer [deftemplate]]
-            [net.cgrand.reload :refer [auto-reload]]
 
             [bouncer.core :as b]
             [bouncer.validators :as v]
@@ -61,12 +60,6 @@
 (def pubkey (keys/public-key "public.pem"))
 (def privkey (keys/private-key "private.pem" "12345"))
 
-(def index (html/html-resource "index.html"))
-(def register (html/html-resource "register.html"))
-(def login (html/html-resource "login.html"))
-(def dashboard (html/html-resource "dashboard.html"))
-(def upload (html/html-resource "upload.html"))
-(def sidebar (html/html-resource "sidebar.html"))
 (def base-template (io/resource "templates/base.html"))
 
 (def session-map (atom (cache/ttl-cache-factory {} :ttl (* 5 60 1000))))
@@ -125,15 +118,15 @@
                                           :password [v/required [v/max-count 30]]) 
                               second
                               (b/validate :username [[user-exists? :message "no such user"]])
-                              second
+                              second 
                               (b/validate :password [[password-match? :message "wrong password"]])) 
           valid? (not (first validation-vals))
           error-map (::b/errors (second validation-vals))
-          error-msgs (str "Error: " (join ", " (-> error-map
+          error-msgs (str "Error: " (join ", " (-> error-map 
                                                    vals
                                                    flatten)))
           token (make-token-pair! username)]
-      (chsk-send! uid [:moo "yo"] ;[(if valid? :auth/success :auth/fail)]
+      (chsk-send! uid  [(if valid? :auth/success :auth/fail)]
                   ))))
 
 (defmethod handle-event :chsk/ws-ping
@@ -170,75 +163,6 @@
   [img-id]
   (str domain-name "/" bucket "/" img-id ".jpg")) 
 
-(defn display-page
-  [{session :session :as req}]
-  (let [user (:user (jwe/decrypt (get-in session [:token :auth-token]) privkey {:alg :rsa-oaep :enc :a128cbc-hs256}))
-        user_id (:user_id (nth (db/get-user {:username user}) 0))
-        listing-ids (for [listing (db/get-user-listings {:user_id user_id})]
-                      (:listing_id listing))
-        image-urls (flatten (for [listing-id listing-ids]
-                              (for [image (db/get-listing-images {:listing_id listing-id})]
-                                (get-img-url (:image_id image)))))]
-    (auth-page (str "welcome, " user) dashboard image-urls)))
-
-(defn handle-registration
-  [resp]
-  (let [params (:params resp)
-        input-email (:email params)
-        input-password (:pass params)
-        input-username (:user params)
-        validation-vals (-> params 
-                            (b/validate :user [v/required [v/max-count 30]]
-                                        :pass [v/required [v/max-count 30]]
-                                        ;;if email field is not empty then check whether it's a valid email
-                                        :email [[v/email :pre (comp not-empty :email)]])
-                                        ;second
-                            (b/validate :email [[duplicate-email? :message "email in use already"]])
-                            second
-                            (b/validate :user [[duplicate-user? :message "username in use already"]]))
-        valid? (not (first validation-vals))
-        error-map (::b/errors (second validation-vals))
-        error-msgs (str "Error: " (join ". " (-> error-map vals flatten)))
-        token (make-token-pair! input-username)]
-    (if valid?
-      (do (db/create-user! {:email input-email
-                            :password (sec/encrypt-password input-password)
-                            :username input-username})
-          (-> (redirect "/dashboard") 
-              (assoc :session token)))
-      (unauth error-msgs register resp))))
-
-(defn handle-login
-  [req]
-  (let [params (:params req)
-        input-user (:username params)
-        input-pass (:password params)
-        session (:session params)
-        ;;kind of circular reasoning here. clear up later. we check for db entry before
-        ;;doing any kind of validating when it should not be that way
-        db-entry (when-let [entry (not-empty (db/get-user {:username input-user}))]
-                   (nth entry 0))
-        db-hashed-password (:password db-entry)
-        user-exists? (fn [user] db-entry)
-        password-match? (fn [pass] (sec/check-password db-hashed-password pass))
-        validation-vals (-> params
-                            (b/validate :username [v/required [v/max-count 30]]
-                                        :password [v/required [v/max-count 30]]) 
-                            second
-                            (b/validate :username [[user-exists? :message "no such user"]])
-                            second
-                            (b/validate :password [[password-match? :message "wrong password"]])) 
-        valid? (not (first validation-vals))
-        error-map (::b/errors (second validation-vals))
-        error-msgs (str "Error: " (join ", " (-> error-map
-                                                 vals
-                                                 flatten)))
-        token (make-token-pair! input-user)]
-    (if valid?
-      (-> (redirect "/dashboard") 
-          (assoc :session token))
-      (unauth error-msgs login req))))
-
 (defn handle-logout
   [{session :session}]
   (assoc (redirect "/")
@@ -269,27 +193,11 @@
   (route/resources "/") ;Serve static resources at the root path
   (GET "/" req (-> (unauth-page "" index req)
                    (content-type "text/html"))) 
-                                        ;(GET "/register" [] registration-page)
-                                        ;(POST "/register" req (handle-registration req))
-                                        ;(GET "/login" [] login-page)
-                                        ;(POST "/login" req (handle-login req))
-                                        ;(GET "/logout" req (handle-logout req))
-  (GET "/dashboard" req (restrict display-page {:handler is-authenticated?
-                                                :redirect "/login"}))
-  ;; (GET "/upload" req (restrict upload-page  {:handler is-authenticated?
-  ;;                                            :redirect "/login"}))
-  ;; (POST "/upload" req (restrict upload-to-amazon  {:handler is-authenticated?
-  ;;                                                  :redirect "/login"}))
   (GET  "/ws" req (ring-ajax-get-or-ws-handshake req))
   (POST "/ws" req (ring-ajax-post                req))
   (route/not-found "Page not found"))
 
 (def backend (session-backend))
-
-(defn wrap-uid [handler]
-  (fn [{user-id :identity :as req}]
-    (println "req2: " (assoc-in req [:session :uid] 1111) "\n\n")
-    (handler (assoc-in req [:session :uid] 1111))))
 
 (defn wrap-user [handler]
   (fn [{user-id :identity :as req}]
@@ -299,24 +207,21 @@
   (-> app-routes
       (wrap-defaults site-defaults)
       (wrap-user)
-      ;(wrap-uid)
       (wrap-authentication backend)
       (wrap-authorization backend)
       (wrap-session)
       (wrap-params)
-      (wrap-keyword-params) 
+      (wrap-keyword-params)
       (wrap-stacktrace)
       (wrap-reload)))
 
 (defn event-loop
   "Handle inbound events."
   []
-  (println "initialized loopy")
   (go (loop [{:keys [client-uuid ring-req event] :as data} (<! ch-chsk)]
-        (println "loopy")
+        (println "loop!")
         (thread (handle-event event ring-req))
-        (recur (<! ch-chsk))))
-  (println "loopy end"))
+        (recur (<! ch-chsk)))))
 
 (defn -main [& [port]]
   (event-loop)

@@ -1008,3 +1008,53 @@ notifying browser that file changed:  resources/public/js/compiled/out/goog/deps
 notifying browser that file changed:  resources/public/js/compiled/out/cljs_deps.js
 notifying browser that file changed:  out/worthanot0/core.js
 [32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.511 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+[31mCompiling "resources/public/js/compiled/app.js" failed.
+[0mERROR: Map literal must contain an even number of forms on file /Users/kangrenchia/Documents/Github/worthanot0/src/cljs/worthanot0/core.cljs, line 14, column 48
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.167 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  resources/public/js/compiled/out/goog/deps.js
+notifying browser that file changed:  resources/public/js/compiled/out/cljs_deps.js
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.508 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  resources/public/js/compiled/out/goog/deps.js
+notifying browser that file changed:  resources/public/js/compiled/out/cljs_deps.js
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.531 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.378 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.398 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  resources/public/js/compiled/out/goog/deps.js
+notifying browser that file changed:  resources/public/js/compiled/out/cljs_deps.js
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.724 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.306 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  resources/public/js/compiled/out/goog/deps.js
+notifying browser that file changed:  resources/public/js/compiled/out/cljs_deps.js
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.718 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.4 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  resources/public/js/compiled/out/goog/deps.js
+notifying browser that file changed:  resources/public/js/compiled/out/cljs_deps.js
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.705 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.37 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.297 seconds.[0m
+sending changed CSS file: resources/public/css/style.css
+sending changed CSS file: resources/public/css/normalize.css
+sending changed CSS file: resources/public/css/skeleton.css
