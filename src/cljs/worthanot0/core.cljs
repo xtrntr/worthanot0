@@ -81,6 +81,10 @@
 (defn login-form  
   [app owner]
   (reify 
+    om/IInitState
+    (init-state [this]
+      {:username ""
+       :password ""})
     om/IRenderState
     (render-state [_ {:keys [username password]}]
       (html [:div 
@@ -113,9 +117,7 @@
   (reify
     om/IInitState
     (init-state [this]
-      {:session/state :unknown
-       :username ""
-       :password ""})
+      {:session/state :unknown})
     om/IWillMount
     (will-mount [this]
       (event-loop app owner))
@@ -125,8 +127,7 @@
         :open
         (om/build login-form app {})
         :secure
-        (om/build profile-form app {:init-state {:username (:username state)
-                                                 :password (:password state)}})
+        (om/build profile-form app {})
         :unknown
         (dom/div nil "Loading...")))))
 

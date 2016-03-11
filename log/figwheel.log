@@ -1511,3 +1511,6 @@ notifying browser that file changed:  out/worthanot0/core.js
 [0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
 notifying browser that file changed:  out/worthanot0/core.js
 [32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.329 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.299 seconds.[0m
