@@ -15,5 +15,5 @@
   (hash/encrypt password {:alg :pbkdf2+sha256}))
 
 (defn check-password
-  [encrypted unencrypted]
+  [encrypted unencrypted] 
   (hash/check unencrypted encrypted))

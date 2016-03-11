@@ -38,8 +38,8 @@
             [taoensso.sente :as s]
             [taoensso.sente.server-adapters.http-kit :refer (sente-web-server-adapter)]
             )
-  (:gen-class))
-
+  (:gen-class)) 
+  
 ;; configs
 (let [{:keys [ch-recv send-fn ajax-post-fn ajax-get-or-ws-handshake-fn
               connected-uids]}
@@ -60,7 +60,7 @@
 (def pubkey (keys/public-key "public.pem"))
 (def privkey (keys/private-key "private.pem" "12345"))
 
-(def base-template (io/resource "templates/base.html"))
+(def index (io/resource "templates/base.html"))
 
 (def session-map (atom (cache/ttl-cache-factory {} :ttl (* 5 60 1000))))
 
@@ -78,7 +78,11 @@
 
 (defn make-token-pair!
   [user]
-  {:token {:auth-token (jwe/encrypt {:user user} pubkey {:alg :rsa-oaep :enc :a128cbc-hs256})}})
+  {:token {:auth-token (jwe/encrypt {:user user} pubkey {:alg :rsa-oaep :enc :a128cbc-hs256})
+           :refresh-token nil 
+           ;;https://rundis.github.io/blog/2015/buddy_auth_part3.html
+           ;;use this in the future to store refresh a refresh token.
+           }})
 
 (defn session-uid
   "Convenient to extract the UID that Sente needs from the request."
@@ -103,7 +107,6 @@
 ;; Reply with authentication failure or success. For a successful authentication, remember the login.
 (defmethod handle-event :session/auth
   [[_ [username password]] req]
-  (println ":session/auth")
   (when-let [uid (get-in req [:session :uid])]
     (let [;;kind of circular reasoning here. clear up later. we check for db entry before
           ;;doing any kind of validating when it should not be that way
@@ -126,8 +129,37 @@
                                                    vals
                                                    flatten)))
           token (make-token-pair! username)]
-      (chsk-send! uid  [(if valid? :auth/success :auth/fail)]
-                  ))))
+      (if valid?
+        (chsk-send! uid [:auth/success token]) 
+        (chsk-send! uid [:auth/fail])
+        ))))
+
+;; (defn handle-registration
+;;   [resp]
+;;   (let [params (:params resp)
+;;         input-email (:email params)
+;;         input-password (:pass params)
+;;         input-username (:user params)
+;;         validation-vals (-> params 
+;;                             (b/validate :user [v/required [v/max-count 30]]
+;;                                         :pass [v/required [v/max-count 30]]
+;;                                         ;;if email field is not empty then check whether it's a valid email
+;;                                         :email [[v/email :pre (comp not-empty :email)]])
+;;                                         ;second
+;;                             (b/validate :email [[duplicate-email? :message "email in use already"]])
+;;                             second
+;;                             (b/validate :user [[duplicate-user? :message "username in use already"]]))
+;;         valid? (not (first validation-vals))
+;;         error-map (::b/errors (second validation-vals))
+;;         error-msgs (str "Error: " (join ". " (-> error-map vals flatten)))
+;;         token (make-token-pair! input-username)]
+;;     (if valid?
+;;       (do (db/create-user! {:email input-email
+;;                             :password (sec/encrypt-password input-password)
+;;                             :username input-username})
+;;           (-> (redirect "/dashboard") 
+;;               (assoc :session token)))
+;;       (unauth error-msgs register resp))))
 
 (defmethod handle-event :chsk/ws-ping
   [_ req]
@@ -138,26 +170,19 @@
   [event req]
   (session-status req))
 
-(html/deftemplate unauth base-template
-  [title content]
-  [:h1] (html/content title)
-  [:body] (html/append content))
-
-(html/defsnippet img-snippet base-template
-  [[:div.content]] 
-  [img-url]
-  [:div.content [:img]] (html/set-attr :src img-url))
-
-(html/deftemplate auth-page base-template 
-  [title content img-urls]
-  [:h1] (html/content title)
-  [:body] (html/append content)
-  [:div.content [:img]] (html/content (map img-snippet img-urls)))
-
+(html/deftemplate unauth index
+  [title]
+  [:h1] (html/content title))
+  
+(html/defsnippet img-snippet index
+  [[:div.content]]  
+  [img-url] 
+  [:div.content [:img]] (html/set-attr :src img-url))  
+   
 (defn unauth-page
-  [title content req]
-  {:status 200 :session {:uid 1111} :body (unauth title content)
-   })
+  [title req]
+  {:status 200 :session {:uid 1111} :body (unauth title)
+   }) 
 
 (defn get-img-url
   [img-id]
@@ -181,7 +206,7 @@
         user (:user (jwe/decrypt (get-in req [:session :token :auth-token]) privkey {:alg :rsa-oaep :enc :a128cbc-hs256}))
         user-uuid (:user_id (nth (db/get-user {:username user}) 0))
         listing-uuid (uuid/v4)
-        image-uuid (uuid/v4)
+        image-uuid (uuid/v4)  
         string (new String)]
     (db/create-listing! {:listing_id listing-uuid :user_id user-uuid})
     (db/create-image! {:listing_id listing-uuid :image_id image-uuid})
@@ -191,7 +216,7 @@
 
 (defroutes app-routes
   (route/resources "/") ;Serve static resources at the root path
-  (GET "/" req (-> (unauth-page "" index req)
+  (GET "/" req (-> (unauth-page "" req)
                    (content-type "text/html"))) 
   (GET  "/ws" req (ring-ajax-get-or-ws-handshake req))
   (POST "/ws" req (ring-ajax-post                req))
@@ -205,21 +230,19 @@
 
 (def http-handler
   (-> app-routes
-      (wrap-defaults site-defaults)
+      (wrap-defaults site-defaults) 
       (wrap-user)
       (wrap-authentication backend)
       (wrap-authorization backend)
       (wrap-session)
       (wrap-params)
       (wrap-keyword-params)
-      (wrap-stacktrace)
-      (wrap-reload)))
+      (wrap-stacktrace))) 
 
 (defn event-loop
   "Handle inbound events."
   []
   (go (loop [{:keys [client-uuid ring-req event] :as data} (<! ch-chsk)]
-        (println "loop!")
         (thread (handle-event event ring-req))
         (recur (<! ch-chsk)))))
 
@@ -227,4 +250,4 @@
   (event-loop)
   (let [port (Integer. (or port (env :port) 10555))]
     (println (format "Starting web server on port %d." port))
-    (run-server http-handler {:port port})))
+    (run-server (wrap-reload http-handler {:dir "resources/public/templates"}) {:port port})))

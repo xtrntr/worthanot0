@@ -2,6 +2,7 @@
   (:require-macros
    [cljs.core.async.macros :as async :refer (go go-loop)])
   (:require 
+   [worthanot0.appstate :refer [app]]
    [om.core :as om :include-macros true]
    [om.dom :as dom :include-macros true]
    [sablono.core :as html :refer-macros [html]]
@@ -17,24 +18,6 @@
   (def chsk-send! send-fn)
   (def chsk-state chsk-state))
 
-(defn field-change
-  "Generic input field updater. Keeps state in sync with input."
-  [e owner field]
-  (let [value (.. e -target -value)]
-    (om/set-state! owner field value)))
-
-(defonce app-state (atom {:text "Hello Chestnut!"}))
-
-(defn attempt-login
-  "Handle the login event - send credentials to the server."
-  [ev app owner]
-  (let [username (-> (om/get-node owner "username") .-value)
-        password (-> (om/get-node owner "password") .-value)]
-    (om/update! app [:notify/error] nil)
-    (chsk-send! [:session/auth [username password]]))
-  ;; suppress the form submit:
-  false)
-
 (defmulti handle-event
   "Handle events based on the event ID."
   (fn [[ev-id ev-arg] app owner] ev-id))
@@ -47,7 +30,7 @@
 (defmethod handle-event :default
   [event app owner]
   (.log js/console event)
-  #_(println "UNKNOWN EVENT" event))
+  #_(println "UNKNOWN EVENT" event)) 
 
 (defmethod handle-event :session/state
   [[_ state] app owner]
@@ -56,42 +39,64 @@
 (defmethod handle-event :auth/fail
   [_ app owner]
   (.log js/console "auth fail")
+  (om/update! app [:username] "")
   (om/update! app [:notify/error] "Invalid credentials"))
 
 (defmethod handle-event :auth/success
-  [_ app owner]
-  (.log js/console "auth success")
+  [[_ token] app owner]
+  (om/update! app :token token)
+  (.log js/console (get-in @app [:username]))
   (om/set-state! owner :session/state :secure))
-
+ 
 (defn test-session
   "Ping the server to update the session state."
   [owner]
   (chsk-send! [:session/status]))
 
+(defn field-change
+  "Generic input field updater. Keeps state in sync with input."
+  [e owner field]
+  (let [value (.. e -target -value)]
+    (om/set-state! owner field value)))
+
+(defn profile-form
+  [app owner]
+  (reify
+    om/IRenderState
+    (render-state [_ state]  
+      (html [:div
+             [:div (str "Logged in as : " (get-in @app [:username]))]]))))
+
+(defn attempt-login
+  "Handle the login event - send credentials to the server."
+  [ev app owner]
+  (let [username (-> (om/get-node owner "username") .-value)
+        password (-> (om/get-node owner "password") .-value)]
+    (om/update! app :username username)
+    (om/update! app [:notify/error] nil)
+    (chsk-send! [:session/auth [username password]]))
+  ;; suppress the form submit:
+  false)
+
 (defn login-form  
   [app owner]
   (reify 
-    om/IInitState
-    (init-state [this] 
-      {:username "" :password ""})
     om/IRenderState
-    (render-state [_ state]
-      (html [:div {:style {:margin "auto" :width "175"
-                           :border "solid blue 1px" :padding 20}}
+    (render-state [_ {:keys [username password]}]
+      (html [:div 
              (when-let [error (:notify/error app)]
                [:div {:style #js {:color "red"}} error])
-             [:h1 "Login"]
              [:form {:on-submit #(attempt-login % app owner)}
               [:div
-               [:p "Username"]
-               [:input {:ref "username" :type "text" :value (:username state)
+               [:div "Username"]
+               [:input {:ref "username" :type "text" :value username
                         :on-change #(field-change % owner :username)}]]
               [:div
-               [:p "Password"]
-               [:input {:ref "password" :type "password" :value (:password state)
+               [:div "Password"]
+               [:input {:ref "password" :type "password" :value password
                         :on-change #(field-change % owner :password)}]]
               [:div
-               [:input {:type "submit" :value "Login"}]]]]))))
+               [:input {:class "button-primary" :type "submit" :value "Login"}]]]]))))
 
 (defn event-loop
   [app owner]
@@ -108,7 +113,9 @@
   (reify
     om/IInitState
     (init-state [this]
-      {:session/state :unknown})
+      {:session/state :unknown
+       :username ""
+       :password ""})
     om/IWillMount
     (will-mount [this]
       (event-loop app owner))
@@ -116,15 +123,14 @@
     (render-state [this state]
       (case (:session/state state)
         :open
-        (html [:div {:style {:margin "auto"
-                             :border "solid red 1px" :padding 20}}
-               (om/build login-form app {})])
+        (om/build login-form app {})
         :secure
-        (dom/div nil "logged in")
+        (om/build profile-form app {:init-state {:username (:username state)
+                                                 :password (:password state)}})
         :unknown
         (dom/div nil "Loading...")))))
 
 (om/root application
-         app-state
-         {:target (. js/document (getElementById "login"))})
+         app
+         {:target (. js/document (getElementById "sidebar"))})
 

@@ -1058,3 +1058,456 @@ notifying browser that file changed:  out/worthanot0/core.js
 sending changed CSS file: resources/public/css/style.css
 sending changed CSS file: resources/public/css/normalize.css
 sending changed CSS file: resources/public/css/skeleton.css
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+[31mCompiling "resources/public/js/compiled/app.js" failed.
+[0mERROR: Unmatched delimiter ) on file /Users/kangrenchia/Documents/Github/worthanot0/src/cljs/worthanot0/core.cljs, line 126, column 39
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.409 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.362 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.538 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.747 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.35 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.326 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.372 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.319 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.309 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.304 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.348 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.309 seconds.[0m
+sending changed CSS file: resources/public/css/skeleton.css
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.383 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.331 seconds.[0m
+sending changed CSS file: resources/public/css/specific.css
+sending changed CSS file: resources/public/css/specific.css
+sending changed CSS file: resources/public/css/specific.css
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+[31mCompiling "resources/public/js/compiled/app.js" failed.
+[0mANALYSIS ERROR: Wrong number of args (2) passed to: core/defn--32241 at line 71 src/cljs/worthanot0/core.cljs on file src/cljs/worthanot0/core.cljs, line 71, column 1
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.234 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.338 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/attempt-login at line 66 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/field-change at line 70 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/field-change at line 74 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/attempt-login at line 66 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/field-change at line 70 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/field-change at line 74 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.404 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+[31mCompiling "resources/public/js/compiled/app.js" failed.
+[0mERROR: Map literal must contain an even number of forms on file /Users/kangrenchia/Documents/Github/worthanot0/src/cljs/worthanot0/core.cljs, line 60, column 29
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.182 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+[31mCompiling "resources/public/js/compiled/app.js" failed.
+[0mERROR: Map literal must contain an even number of forms on file /Users/kangrenchia/Documents/Github/worthanot0/src/cljs/worthanot0/core.cljs, line 60, column 29
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.173 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+[31mCompiling "resources/public/js/compiled/app.js" failed.
+[0mERROR: Map literal must contain an even number of forms on file /Users/kangrenchia/Documents/Github/worthanot0/src/cljs/worthanot0/core.cljs, line 60, column 29
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.149 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/attempt-login at line 66 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/field-change at line 70 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/attempt-login at line 66 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/field-change at line 70 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.383 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/attempt-login at line 66 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/field-change at line 70 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/attempt-login at line 66 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/field-change at line 70 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.515 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 66 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/field-change at line 70 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 66 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/field-change at line 70 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.383 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.359 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.372 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.392 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.378 seconds.[0m
+sending changed CSS file: resources/public/css/skeleton.css
+sending changed CSS file: resources/public/css/skeleton.css
+sending changed CSS file: resources/public/css/skeleton.css
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+[31mCompiling "resources/public/js/compiled/app.js" failed.
+[0mERROR: Map literal must contain an even number of forms on file /Users/kangrenchia/Documents/Github/worthanot0/src/cljs/worthanot0/appstate.cljs, line 3, column 36
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.188 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/app-state at line 143 src/cljs/worthanot0/core.cljs
+[31mCompiling "resources/public/js/compiled/app.js" failed.
+[0mERROR: Map literal must contain an even number of forms on file /Users/kangrenchia/Documents/Github/worthanot0/src/cljs/worthanot0/appstate.cljs, line 3, column 36
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.344 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 70 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 70 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/app-state at line 141 src/cljs/worthanot0/core.cljs
+[31mCompiling "resources/public/js/compiled/app.js" failed.
+[0mERROR: Map literal must contain an even number of forms on file /Users/kangrenchia/Documents/Github/worthanot0/src/cljs/worthanot0/appstate.cljs, line 3, column 36
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.384 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+[31mCompiling "resources/public/js/compiled/app.js" failed.
+[0mERROR: Map literal must contain an even number of forms on file /Users/kangrenchia/Documents/Github/worthanot0/src/cljs/worthanot0/appstate.cljs, line 3, column 36
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.123 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+[31mCompiling "resources/public/js/compiled/app.js" failed.
+[0mERROR: Map literal must contain an even number of forms on file /Users/kangrenchia/Documents/Github/worthanot0/src/cljs/worthanot0/appstate.cljs, line 3, column 32
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.117 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+[31mCompiling "resources/public/js/compiled/app.js" failed.
+[0mERROR: Map literal must contain an even number of forms on file /Users/kangrenchia/Documents/Github/worthanot0/src/cljs/worthanot0/appstate.cljs, line 3, column 32
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.127 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+[31mCompiling "resources/public/js/compiled/app.js" failed.
+[0mERROR: Map literal must contain an even number of forms on file /Users/kangrenchia/Documents/Github/worthanot0/src/cljs/worthanot0/appstate.cljs, line 3, column 32
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.13 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+[31mCompiling "resources/public/js/compiled/app.js" failed.
+[0mERROR: Map literal must contain an even number of forms on file /Users/kangrenchia/Documents/Github/worthanot0/src/cljs/worthanot0/appstate.cljs, line 3, column 32
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.116 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/app-state at line 144 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  resources/public/js/compiled/out/cljs_deps.js
+notifying browser that file changed:  out/worthanot0/appstate.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.45 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.456 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.382 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.47 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.427 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.43 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.403 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+[31mCompiling "resources/public/js/compiled/app.js" failed.
+[0mANALYSIS ERROR: Wrong number of args (5) passed to: core/html at line 94 src/cljs/worthanot0/core.cljs on file src/cljs/worthanot0/core.cljs, line 94, column 7
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.252 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.351 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+[31mCompiling "resources/public/js/compiled/app.js" failed.
+[0mANALYSIS ERROR: Wrong number of args (5) passed to: core/html at line 94 src/cljs/worthanot0/core.cljs on file src/cljs/worthanot0/core.cljs, line 94, column 7
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.27 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/send-file at line 72 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.357 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.317 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.309 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/user-id at line 128 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.306 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/user-id at line 129 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.395 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/user-id at line 129 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.414 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/user-id at line 129 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.352 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/user-id at line 129 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.339 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.296 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.317 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.311 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.298 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.341 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/user-id at line 68 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/user-id at line 70 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.354 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/user-id at line 68 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/user-id at line 70 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.419 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/user-id at line 65 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/user-id at line 67 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.378 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/user-id at line 65 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/user-id at line 67 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.363 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/user-id at line 65 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/user-id at line 67 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.371 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/profile-form at line 118 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.302 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/user-id at line 65 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/user-id at line 67 src/cljs/worthanot0/core.cljs
+[31mCompiling "resources/public/js/compiled/app.js" failed.
+[0mERROR: Map literal must contain an even number of forms on file /Users/kangrenchia/Documents/Github/worthanot0/src/cljs/worthanot0/core.cljs, line 95, column 70
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.192 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/user-id at line 65 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/user-id at line 67 src/cljs/worthanot0/core.cljs
+[31mCompiling "resources/public/js/compiled/app.js" failed.
+[0mERROR: Map literal must contain an even number of forms on file /Users/kangrenchia/Documents/Github/worthanot0/src/cljs/worthanot0/core.cljs, line 95, column 70
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.208 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/user-id at line 65 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/user-id at line 67 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.333 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/username at line 65 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/username at line 67 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/username at line 124 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/username at line 126 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.378 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/username at line 65 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/username at line 67 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.369 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/username at line 65 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/username at line 67 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.378 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/username at line 65 src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/username at line 67 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.432 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.317 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Bad method signature in protocol implementation, om/IRenderState render-state does not declare arity 1 at line 117 src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.33 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.316 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.31 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.341 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.309 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  resources/public/js/compiled/out/goog/deps.js
+notifying browser that file changed:  resources/public/js/compiled/out/cljs_deps.js
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.59 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.426 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.423 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.432 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.411 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.395 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.4 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+[31mCompiling "resources/public/js/compiled/app.js" failed.
+[0mANALYSIS ERROR: Referred var worthanot0.appstate/state does not exist on file null, line null, column null
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.172 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+[31mCompiling "resources/public/js/compiled/app.js" failed.
+[0mANALYSIS ERROR: Referred var worthanot0.appstate/state does not exist on file null, line null, column null
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.125 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.342 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.292 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.341 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.323 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.319 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.328 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.349 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.299 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.381 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.384 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.334 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.379 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.342 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/username at line 130 /Users/kangrenchia/Documents/Github/worthanot0/src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/password at line 131 /Users/kangrenchia/Documents/Github/worthanot0/src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.34 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/username at line 130 /Users/kangrenchia/Documents/Github/worthanot0/src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/password at line 131 /Users/kangrenchia/Documents/Github/worthanot0/src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.346 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+WARNING: Use of undeclared Var worthanot0.core/username at line 130 /Users/kangrenchia/Documents/Github/worthanot0/src/cljs/worthanot0/core.cljs
+WARNING: Use of undeclared Var worthanot0.core/password at line 131 /Users/kangrenchia/Documents/Github/worthanot0/src/cljs/worthanot0/core.cljs
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.393 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.364 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.336 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.328 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.433 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.311 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.324 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.297 seconds.[0m
+[0mCompiling "resources/public/js/compiled/app.js" from ["src/cljs"]...
+notifying browser that file changed:  out/worthanot0/core.js
+[32mSuccessfully compiled "resources/public/js/compiled/app.js" in 0.329 seconds.[0m
