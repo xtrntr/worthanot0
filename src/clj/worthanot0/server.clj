@@ -90,7 +90,8 @@
 (defn session-uid
   "Convenient to extract the UID that Sente needs from the request."
   [req]
-  (get-in req [:session :uid]))
+  (get-in req [:session :uid])
+  )
 
 (defn session-status
   "Tell the server what state this user's session is in."
@@ -103,11 +104,13 @@
 
 (defmethod handle-event :session/status
   [_ req]
+  (println ":session/status")
   (session-status req))
 
 ;; Reply with authentication failure or success. For a successful authentication, remember the login.
 (defmethod handle-event :session/auth
   [[_ [username password]] req]
+  (println ":session/auth")
   (when-let [uid (get-in req [:session :uid])]
     (let [;;kind of circular reasoning here. clear up later. we check for db entry before
           ;;doing any kind of validating when it should not be that way
@@ -130,10 +133,12 @@
                                                    vals
                                                    flatten)))
           token (make-token-pair! username)]
-      (chsk-send! uid [(if valid? :auth/success :auth/fail)]))))
+      (chsk-send! uid [:moo "yo"] ;[(if valid? :auth/success :auth/fail)]
+                  ))))
 
 (defmethod handle-event :chsk/ws-ping
   [_ req]
+  (println "chsk/ws-ping")
   (session-status req))
 
 (defmethod handle-event :default
@@ -281,6 +286,11 @@
 
 (def backend (session-backend))
 
+(defn wrap-uid [handler]
+  (fn [{user-id :identity :as req}]
+    (println "req2: " (assoc-in req [:session :uid] 1111) "\n\n")
+    (handler (assoc-in req [:session :uid] 1111))))
+
 (defn wrap-user [handler]
   (fn [{user-id :identity :as req}]
     (handler (assoc req :user (db/get-user {:username user-id})))))
@@ -289,6 +299,7 @@
   (-> app-routes
       (wrap-defaults site-defaults)
       (wrap-user)
+      ;(wrap-uid)
       (wrap-authentication backend)
       (wrap-authorization backend)
       (wrap-session)
@@ -300,9 +311,12 @@
 (defn event-loop
   "Handle inbound events."
   []
+  (println "initialized loopy")
   (go (loop [{:keys [client-uuid ring-req event] :as data} (<! ch-chsk)]
+        (println "loopy")
         (thread (handle-event event ring-req))
-        (recur (<! ch-chsk)))))
+        (recur (<! ch-chsk))))
+  (println "loopy end"))
 
 (defn -main [& [port]]
   (event-loop)

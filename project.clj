@@ -13,8 +13,6 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/clojurescript "1.7.170"]
                  
-
-                 ;;[org.clojure/clojurescript "0.0-3058" :scope "provided"]
                  ;;JSON encoding
                  [cheshire "5.5.0"]
                  ;;validation for cljs and clj
@@ -34,8 +32,10 @@
                  [cljsjs/react-dom "0.14.3-1"]
                  ;;reactJS wrapper
                  [org.omcljs/om "0.9.0"]
-                                        ;[prismatic/om-tools "0.3.11"]
-                                        ;[racehub/om-bootstrap "0.5.3"]
+                 
+                 ;;[prismatic/om-tools "0.3.11"]
+                 ;;[racehub/om-bootstrap "0.5.3"]
+
                  ;;environment variables handling
                  [environ "1.0.2"]
                  ;;database
@@ -44,6 +44,8 @@
                  [buddy "0.10.0"]
                  ;;database migrations
                  [migratus "0.8.13"]
+                 ;;managing software components with runtime state
+                 [com.stuartsierra/component "0.3.1"]
                  ;;dependencies 
                  [org.slf4j/slf4j-log4j12 "1.7.9"]
                  ;;library for generating SQL functions

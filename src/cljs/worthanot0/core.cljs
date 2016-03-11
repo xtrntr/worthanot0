@@ -76,27 +76,26 @@
       {:username "" :password ""})
     om/IRenderState
     (render-state [_ state]
-      (html [:div {:style {:margin "auto" :width "175"
-                           :border "solid blue 1px" :padding 20}}
-             (when-let [error (:notify/error app)]
-               [:div {:style #js {:color "red"}} error])
-             [:h1 "Login"]
-             [:form {:on-submit #(attempt-login % app owner)}
-              [:div
-               [:p "Username"]
-               [:input {:ref "username" :type "text" :value (:username state)
-                        :on-change #(field-change % owner :username)}]]
-              [:div
-               [:p "Password"]
-               [:input {:ref "password" :type "password" :value (:password state)
-                        :on-change #(field-change % owner :password)}]]
-              [:div
-               [:input {:type "submit" :value "Login"}]]]]))))
+      (when-let [error (:notify/error app)]
+        (dom/div {:style #js {:color "red"}} error))
+      (dom/form #js {:id "axd" :onSubmit #(attempt-login % app owner)}
+                (dom/div nil "user") 
+                (dom/input #js {:ref "username" 
+                                :type "text" 
+                                        ;:value (:username state)
+                                        ;:on-change #(field-change % owner :username)
+                                })
+                (dom/div nil "password") 
+                (dom/input #js {:ref "password" 
+                                :type "password" 
+                                :value (:password state)
+                                :on-change #(field-change % owner :password)})
+                (dom/div nil "")
+                (dom/input #js {:type "submit" :value "login"})))))
 
 (defn event-loop
   [app owner]
   (go (loop [[op arg] (:event (<! ch-chsk))]
-        #_(println "-" op)
         (.log js/console (str "op: " op "\n" "arg: " arg))
         (case op
           :chsk/recv (handle-event arg app owner)
