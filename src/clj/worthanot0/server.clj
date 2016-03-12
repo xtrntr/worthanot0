@@ -87,22 +87,28 @@
 (defn session-uid
   "Convenient to extract the UID that Sente needs from the request."
   [req]
-  (get-in req [:session :uid])
-  )
+  (get-in req [:session :uid]))
+
+(defn token-expire?
+  [token]
+  ;;extract from refresh token later.
+  (get-in @token [:token :auth-token]))
 
 (defn session-status
   "Tell the server what state this user's session is in."
-  [req]
-  (chsk-send! (get-in req [:session :uid]) [:session/state :open]))
+  [token req]
+  (when-let [uid (session-uid req)]
+    (println token)
+    (chsk-send! uid [:session/state (if token :secure :open)])))
 
 (defmulti handle-event
   "Handle events based on the event ID."
   (fn [[ev-id ev-arg] ring-req] ev-id))
 
 (defmethod handle-event :session/status
-  [_ req]
+  [[_ [token]] req]
   (println ":session/status")
-  (session-status req))
+  (session-status token req))
 
 ;; Reply with authentication failure or success. For a successful authentication, remember the login.
 (defmethod handle-event :session/auth
@@ -134,41 +140,44 @@
         (chsk-send! uid [:auth/fail])
         ))))
 
-;; (defn handle-registration
-;;   [resp]
-;;   (let [params (:params resp)
-;;         input-email (:email params)
-;;         input-password (:pass params)
-;;         input-username (:user params)
-;;         validation-vals (-> params 
-;;                             (b/validate :user [v/required [v/max-count 30]]
-;;                                         :pass [v/required [v/max-count 30]]
-;;                                         ;;if email field is not empty then check whether it's a valid email
-;;                                         :email [[v/email :pre (comp not-empty :email)]])
-;;                                         ;second
-;;                             (b/validate :email [[duplicate-email? :message "email in use already"]])
-;;                             second
-;;                             (b/validate :user [[duplicate-user? :message "username in use already"]]))
-;;         valid? (not (first validation-vals))
-;;         error-map (::b/errors (second validation-vals))
-;;         error-msgs (str "Error: " (join ". " (-> error-map vals flatten)))
-;;         token (make-token-pair! input-username)]
-;;     (if valid?
-;;       (do (db/create-user! {:email input-email
-;;                             :password (sec/encrypt-password input-password)
-;;                             :username input-username})
-;;           (-> (redirect "/dashboard") 
-;;               (assoc :session token)))
-;;       (unauth error-msgs register resp))))
+(defmethod handle-event :session/register
+  [[_ [username password email]] req]
+  (when-let [uid (get-in req [:session :uid])]
+    (let [params {:email email
+                  :password password
+                  :username username}
+          validation-vals (-> params 
+                              (b/validate :username [v/required [v/max-count 30]]
+                                          :password [v/required [v/max-count 30]]
+                                          ;;if email field is not empty then check whether it's a valid email
+                                          :email [[v/email :pre (comp not-empty :email)]])
+                                        ;second
+                              (b/validate :email [[duplicate-email? :message "email in use already"]])
+                              second
+                              (b/validate :username [[duplicate-user? :message "username in use already"]])
+                              second)
+          valid? (not (first validation-vals))
+          error-map (::b/errors (second validation-vals))
+          error-msgs (str "Error: " (join ". " (-> error-map vals flatten))) 
+          token (make-token-pair! username)]
+      (println (str "\n\n\n" validation-vals "\n\n\n"))
+      (println (str "\n\n\n" (first validation-vals) "\n\n\n"))
+      (println (str "\n\n\n" (not validation-vals) "\n\n\n"))
+      (if valid?
+        (do (db/create-user! {:email email
+                              :password (sec/encrypt-password password)
+                              :username username})
+            (chsk-send! uid [:register/success token]))
+        (chsk-send! uid [:register/fail error-msgs])))))
 
 (defmethod handle-event :chsk/ws-ping
   [_ req]
   (println "chsk/ws-ping")
-  (session-status req))
+  (session-status [] req))
 
 (defmethod handle-event :default
   [event req]
-  (session-status req))
+  (session-status [] req))
 
 (html/deftemplate unauth index
   [title]
@@ -187,11 +196,6 @@
 (defn get-img-url
   [img-id]
   (str domain-name "/" bucket "/" img-id ".jpg")) 
-
-(defn handle-logout
-  [{session :session}]
-  (assoc (redirect "/")
-    :session (dissoc session :token)))
 
 (defn is-authenticated? 
   [{session :session :as req}]
