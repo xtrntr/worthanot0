@@ -1,13 +1,21 @@
 (ns worthanot0.core
   (:require-macros
-   [cljs.core.async.macros :as async :refer (go go-loop)])
+   [cljs.core.async.macros :as async :refer (go go-loop)]
+   [secretary.core :refer [defroute]])
   (:require 
    [worthanot0.appstate :refer [app]]
    [om.core :as om :include-macros true]
    [om.dom :as dom :include-macros true]
    [sablono.core :as html :refer-macros [html]]
+
    [cljs.core.async :as async :refer (<! >! put! chan)]
-   [taoensso.sente  :as s]))
+   [secretary.core :as secretary]
+   [goog.events :as events]
+   [taoensso.sente  :as s])
+  (:import goog.History
+           goog.history.EventType
+           goog.history.Html5History))
+
 
 (enable-console-print!)
 
@@ -17,6 +25,46 @@
   (def ch-chsk    ch-recv)
   (def chsk-send! send-fn)
   (def chsk-state chsk-state))
+
+(defn get-token []
+  (str js/window.location.pathname js/window.location.search))
+
+(defn make-history []
+  (doto (Html5History.)
+    (.setPathPrefix (str js/window.location.protocol
+                         "//"
+                         js/window.location.host))
+    (.setUseFragment false)))
+
+(defn handle-url-change [e]
+  ;; log the event object to console for inspection
+  (js/console.log e)
+  ;; and let's see the token
+  (js/console.log (str "Navigating: " (get-token)))
+  ;; we are checking if this event is due to user action, such as click a link
+  ;; a back button, etc. as opposed to programmatically setting the URL with the API
+  (when-not (.-isNavigation e)
+    ;; in this case, we're setting it
+    (js/console.log "Token set programmatically")
+    ;; let's scroll to the top to simulate a navigation
+    (js/window.scrollTo 0 0))
+  ;; dispatch on the token
+  (secretary/dispatch! (get-token)))
+
+(defonce history 
+  (doto (make-history)
+    (goog.events/listen EventType.NAVIGATE
+                        ;; wrap in a fn to allow live reloading
+                        #(handle-url-change %))
+    (.setEnabled true)))
+
+(defn set-html! [el content]
+  (aset el "innerHTML" content))
+
+(defn nav! [token]
+  (.setToken history token))
+
+(secretary/set-config! :prefix "#") 
 
 (defmulti handle-event
   "Handle events based on the event ID."
@@ -33,14 +81,13 @@
 
 (defmethod handle-event :auth/fail
   [_ app owner]
-  (.log js/console "auth fail")
   (om/update! app [:username] nil)
   (om/update! app [:login/fail] "Invalid credentials"))
 
 (defmethod handle-event :auth/success
   [[_ token] app owner]
-  (om/update! app [:token] token)
-  (om/set-state! owner :session/state :secure))
+  (om/update! app [:token] (:token token))
+  (om/set-state! owner :session/state :secure)) 
  
 (defmethod handle-event :register/fail
   [[_ error-msgs] app owner]
@@ -53,9 +100,11 @@
   (om/set-state! owner :session/state :secure))
 
 (defn test-session
-  "Ping the server to update the session state."
+  "Ping the server to update the session state." 
   [app owner]
-  (chsk-send! [:session/status (get-in @app [:token])]))
+  (println "send token : ") 
+  (println (get-in @app [:token]))
+  (chsk-send! [:session/status [(get-in @app [:token])]]))
 
 (defn field-change
   "Generic input field updater. Keeps state in sync with input."
@@ -65,9 +114,14 @@
 
 (defn do-logout
   [ev app owner]
+  (nav! "/")
   (om/set-state! owner :session/state :open)
   (om/update! app [:token] nil)
   (om/update! app [:username] nil))
+
+(defn go-upload
+  [ev app owner]
+  (nav! "/#/upload"))
 
 (defn profile-form
   [app owner] 
@@ -76,11 +130,6 @@
     (render-state [_ state]  
       (html [:div
              [:div (str "Logged in as : " (get-in @app [:username]))]
-             [:div 
-              [:form {:on-submit #(go-upload % app owner)}
-               [:input {:ref "username" :type "text" :value username
-                        :on-change #(field-change % owner :username)}]
-               [:input {:class "button-primary" :value "Search" :type "submit"}]]]
              [:div 
               [:form {:on-submit #(go-upload % app owner)}
                [:input {:class "button-primary" :value "Upload" :type "submit"}]]]
@@ -135,6 +184,7 @@
                         :on-change #(field-change % owner :password)}]]
               [:div
                [:input {:class "button-primary" :type "submit" :value "Login"}]]]
+             [:div]
              (when-let [error (:register/fail app)]
                [:div {:style #js {:color "red"}} error])
              [:form {:on-submit #(attempt-register % app owner)}
@@ -163,7 +213,7 @@
           (test-session app owner))
         (recur (:event (<! ch-chsk))))))
 
-(defn application
+(defn sidebar
   [app owner]
   (reify
     om/IInitState
@@ -182,7 +232,28 @@
         :unknown
         (dom/div nil "Loading...")))))
 
-(om/root application
+;; (defn window
+;;   [app owner]
+;;   (reify
+;;     om/IInitState))
+;; (om/root window
+;;          app
+;;          {:target (. js/document (getElementById "window"))})
+
+(def window (. js/document (getElementById "window")))
+
+(defroute home-path "/" []
+  (set-html! window "<h1>OMG! YOU'RE HOME!</h1>"))
+
+(defroute user-path "/upload" []
+  (set-html! window "<h1>UPLOAD!</h1>"))
+
+(defroute jackpot-path "/777" []
+  (set-html! window "<h1>YOU HIT THE JACKPOT!</h1>"))
+
+(defroute "*" []
+  (set-html! window "<h1>LOL! YOU LOST!</h1>"))
+
+(om/root sidebar
          app
          {:target (. js/document (getElementById "sidebar"))})
-

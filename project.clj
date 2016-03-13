@@ -19,6 +19,8 @@
                  [bouncer "1.0.0"]
                  ;;web server
                  [http-kit "2.1.19"]
+                 ;;client side routing
+                 [secretary "1.2.3"]
                  ;;routing 
                  [ring/ring-mock "0.3.0"]
                  [ring "1.4.0"]

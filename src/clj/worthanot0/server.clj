@@ -18,6 +18,7 @@
             [compojure.route :as route :refer [resources]]
             [compojure.handler :as handler]
             [org.httpkit.server :refer [run-server]]
+            [ring.middleware.session.memory :refer [memory-store]]
             [ring.middleware.session.cookie :refer [cookie-store]]
             [ring.middleware.session :refer [wrap-session]]
             [ring.middleware.reload :refer [wrap-reload]]
@@ -51,6 +52,8 @@
   (def connected-uids   connected-uids) ; Watchable, read-only atom
   )
 
+(def koochy (atom {}))
+
 (def domain-name "http://s3-ap-southeast-1.amazonaws.com/")
 (def bucket "worthanot-listings")
 (def aws-zone "ap-southeast-1")
@@ -63,6 +66,25 @@
 (def index (io/resource "templates/base.html"))
 
 (def session-map (atom (cache/ttl-cache-factory {} :ttl (* 5 60 1000))))
+
+(defn unique-id
+  []
+  (rand-int 10000))
+
+(defn keep-alive
+  [uid]
+  (when-let [token (get @session-map uid)]
+    (swap! session-map assoc uid token)))
+
+(defn add-token
+  [uid token]
+  (swap! session-map assoc uid token))
+
+(defn get-token
+  [uid]
+  (let [token (get @session-map uid)]
+    (println "get-token" uid token (java.util.Date.))
+    token))
 
 ;;return true if no user found, return false if user found
 ;;when custom validator return false, trigger check
@@ -98,7 +120,6 @@
   "Tell the server what state this user's session is in."
   [token req]
   (when-let [uid (session-uid req)]
-    (println token)
     (chsk-send! uid [:session/state (if token :secure :open)])))
 
 (defmulti handle-event
@@ -107,7 +128,7 @@
 
 (defmethod handle-event :session/status
   [[_ [token]] req]
-  (println ":session/status")
+  (println (str "auth token : " token))
   (session-status token req))
 
 ;; Reply with authentication failure or success. For a successful authentication, remember the login.
@@ -136,7 +157,7 @@
                                                    flatten)))
           token (make-token-pair! username)]
       (if valid?
-        (chsk-send! uid [:auth/success token]) 
+        (chsk-send! uid [:auth/success token])
         (chsk-send! uid [:auth/fail])
         ))))
 
@@ -172,7 +193,6 @@
 
 (defmethod handle-event :chsk/ws-ping
   [_ req]
-  (println "chsk/ws-ping")
   (session-status [] req))
 
 (defmethod handle-event :default
@@ -190,8 +210,7 @@
    
 (defn unauth-page
   [title req]
-  {:status 200 :session {:uid 1111} :body (unauth title)
-   }) 
+  {:status 200 :session {:uid (uuid/v4)} :body (unauth title)}) 
 
 (defn get-img-url
   [img-id]
@@ -228,14 +247,9 @@
 
 (def backend (session-backend))
 
-(defn wrap-user [handler]
-  (fn [{user-id :identity :as req}]
-    (handler (assoc req :user (db/get-user {:username user-id})))))
-
 (def http-handler
   (-> app-routes
-      (wrap-defaults site-defaults) 
-      (wrap-user)
+      (wrap-defaults site-defaults)
       (wrap-authentication backend)
       (wrap-authorization backend)
       (wrap-session)
@@ -247,11 +261,14 @@
   "Handle inbound events."
   []
   (go (loop [{:keys [client-uuid ring-req event] :as data} (<! ch-chsk)]
+        ;(println (str "\n\n\n" ring-req "\n\n\n"))
         (thread (handle-event event ring-req))
         (recur (<! ch-chsk)))))
 
 (defn -main [& [port]]
-  (event-loop)
   (let [port (Integer. (or port (env :port) 10555))]
     (println (format "Starting web server on port %d." port))
-    (run-server (wrap-reload http-handler {:dir "resources/public/templates"}) {:port port})))
+    (run-server (wrap-reload http-handler {:dir "resources/public/templates"}) {:port port})
+    (event-loop)))
+ 
+(println 1)

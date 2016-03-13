@@ -17,3 +17,4 @@
 (defn check-password
   [encrypted unencrypted] 
   (hash/check unencrypted encrypted))
+ 
